@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baluster Math - app</title>
+<style>
+  :root { --accent:#3b3f9e; --ink:#14163a; --paper:#f4f4fb; --soft:#e1e2f4; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, "Times New Roman", serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+  main { max-width:660px; margin:0 auto; }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  body { padding:2rem 1.2rem; }
+  h1 { font-size:1.8rem; color:var(--accent); }
+  .boundary { margin:1rem 0 1.4rem; }
+  .panel { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+  h2 { font-size:1.1rem; margin-bottom:.6rem; }
+  p.note { font-size:.9rem; margin-bottom:.4rem; }
+  label { display:block; font-size:.9rem; margin:.45rem 0 .1rem; }
+  input { width:100%; padding:.45rem .55rem; font-size:1rem; border:1px solid #9a9dd0; border-radius:6px; background:#fff; color:var(--ink); }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+  .row3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.6rem; }
+  .out { margin-top:.7rem; font-size:.98rem; background:#fff; border:1px dashed #9a9dd0; border-radius:6px; padding:.6rem .7rem; min-height:2.4rem; overflow-wrap:anywhere; }
+  .out.err { border-color:#b03030; color:#8a1f1f; }
+  footer { margin-top:1.8rem; font-size:.85rem; color:#6b6e9e; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Baluster Math</h1>
+  <div class="boundary">
+    <strong>Boundary: arithmetic only</strong>
+    This page works out baluster counts, centres and packs from the numbers you type. The opening, the baluster width and the largest gap are yours to take from your own drawing and from whatever rule or maker's figure you choose to follow. It has not seen your stair, deck or balcony and does not know any code, height, load or fixing, and it gives no verdict that a layout is compliant, adequate or safe. Every number is your own entry.
+  </div>
+
+  <div class="panel">
+    <h2>The count truth</h2>
+    <p class="note">Balusters between two posts for the largest gap you choose, spaced evenly. Opening is the clear distance between the posts in cm, width and largest gap are in whole mm.</p>
+    <div class="row2">
+      <div><label for="a-o">Opening (cm)</label><input id="a-o" type="text" value="180"></div>
+      <div><label for="a-w">Baluster width (mm)</label><input id="a-w" type="text" value="40"></div>
+      <div><label for="a-g">Largest gap (mm)</label><input id="a-g" type="text" value="100"></div>
+    </div>
+    <div class="out" id="a-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The centres truth</h2>
+    <p class="note">Where the baluster centres sit for that layout, measured from the posts.</p>
+    <div class="out" id="b-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The packs truth</h2>
+    <p class="note">Balusters and whole packs for a run of identical openings, using the numbers above.</p>
+    <div class="row2">
+      <div><label for="c-r">Openings</label><input id="c-r" type="text" value="4"></div>
+      <div><label for="c-p">Pack size</label><input id="c-p" type="text" value="12"></div>
+    </div>
+    <div class="out" id="c-out"></div>
+  </div>
+
+  <footer>Baluster Math is exact arithmetic over the numbers you enter. <a href="index.html">Why it exists</a>.</footer>
+</main>
+<script src="engine.js"></script>
+<script>
+  function show(id, fn) {
+    const out = document.getElementById(id);
+    try { out.textContent = fn(); out.classList.remove("err"); }
+    catch (e) { out.textContent = e.message; out.classList.add("err"); }
+  }
+  function recalc() {
+    const v = (id) => document.getElementById(id).value;
+    show("a-out", () => countTruth(v("a-o"), v("a-w"), v("a-g")));
+    show("b-out", () => centresTruth(v("a-o"), v("a-w"), v("a-g")));
+    show("c-out", () => packsTruth(v("a-o"), v("a-w"), v("a-g"), v("c-r"), v("c-p")));
+  }
+  document.querySelectorAll("input").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baluster Math - baluster spacing arithmetic</title>
+<style>
+  :root { --accent:#3b3f9e; --ink:#14163a; --paper:#f4f4fb; --soft:#e1e2f4; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, "Times New Roman", serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+  main { max-width:660px; margin:0 auto; }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  body { padding:2.5rem 1.2rem; }
+  h1 { font-size:2.2rem; color:var(--accent); }
+  p.lede { font-size:1.12rem; margin:.9rem 0 1.6rem; }
+  .boundary { margin-bottom:1.6rem; }
+  section { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1.1rem 1.2rem; margin-bottom:1.2rem; }
+  h2 { font-size:1.18rem; margin-bottom:.5rem; }
+  section p { font-size:.98rem; }
+  a.btn { display:inline-block; margin-top:1.4rem; background:var(--accent); color:#fff; text-decoration:none; padding:.8rem 1.6rem; border-radius:999px; font-size:1.05rem; }
+  footer { margin-top:2.2rem; font-size:.85rem; color:#6b6e9e; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Baluster Math</h1>
+  <p class="lede">In a 180 cm opening, balusters 40 mm wide with a gap of at most 100 mm take 13 balusters, leaving 14 equal gaps of 91.4 mm.</p>
+  <div class="boundary">
+    <strong>Boundary: arithmetic only</strong>
+    Baluster Math works out baluster counts, centres and packs from the numbers you type. The opening, the baluster width and the largest gap are yours to take from your own drawing and from whatever rule or maker's figure you choose to follow. It has not seen your stair, deck or balcony and does not know any code, height, load or fixing, and it gives no verdict that a layout is compliant, adequate or safe. Every number is your own entry.
+  </div>
+  <p class="lede" style="font-size:1rem">Starting examples: a 180 cm opening, where the centres sit, and the packs for four such openings.</p>
+  <section>
+    <h2>The count truth</h2>
+    <p>In a 180 cm opening, balusters 40 mm wide with a gap of at most 100 mm take 13 balusters, leaving 14 equal gaps of 91.4 mm.</p>
+  </section>
+  <section>
+    <h2>The centres truth</h2>
+    <p>Centres sit 131.4 mm apart, with the first centre 111.4 mm from one post and the last 111.4 mm from the other.</p>
+  </section>
+  <section>
+    <h2>The packs truth</h2>
+    <p>4 openings of 13 balusters need 52 balusters, which is 5 packs of 12, with 8 left over.</p>
+  </section>
+  <a class="btn" href="app.html">Space your balusters</a>
+  <footer>Baluster Math is exact arithmetic over the numbers you enter, nothing more.</footer>
+</main>
+</body>
+</html>
